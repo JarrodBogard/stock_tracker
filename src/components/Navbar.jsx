@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 export default function Navbar({ onSetData }) {
   const [search, setSearch] = useState("");
 
@@ -8,7 +10,7 @@ export default function Navbar({ onSetData }) {
 
     async function fetchData() {
       const response = await fetch(
-        `https://api.twelvedata.com/quote?symbol=${search}&apikey=9360604c3cde4d95bdb2d262c2c2a6cf`
+        `https://api.twelvedata.com/quote?symbol=${search}&apikey=${API_KEY}`
       );
       const data = await response.json();
       onSetData(data);

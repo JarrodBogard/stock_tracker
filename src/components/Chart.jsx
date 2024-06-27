@@ -1,13 +1,55 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import NoDataFound from "./NoDataFound";
 
-export default function Chart({ data, onSetWatchlist }) {
-  const [profile, setProfile] = useState(null);
-  const [amount, setAmount] = useState(null);
-  const [shares, setShares] = useState(0);
-  const [chartToggle, setChartToggle] = useState(false);
+const API_KEY = import.meta.env.VITE_API_KEY;
 
-  const API_KEY = import.meta.env.VITE_API_KEY;
+const initialState = {
+  profile: null,
+  amount: null,
+  shares: 0,
+  toggle: false,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "profile/loaded":
+      return {
+        ...state,
+        profile: action.payload,
+      };
+
+    case "amount/loaded":
+      return {
+        ...state,
+        amount: action.payload,
+        toggle: true,
+      };
+
+    case "amount/updated":
+      return {
+        ...state,
+        amount: action.payload,
+        shares: 0,
+        toggle: false,
+      };
+
+    case "add_shares":
+      return {
+        ...state,
+        shares: action.payload,
+      };
+  }
+}
+
+export default function Chart({ data, onSetWatchlist }) {
+  const [{ profile, amount, shares, toggle }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
+  // const [profile, setProfile] = useState(null);
+  // const [amount, setAmount] = useState(null);
+  // const [shares, setShares] = useState(0);
+  // const [chartToggle, setChartToggle] = useState(false);
 
   function convertToNum(x) {
     return Number.parseFloat(x).toFixed(2);
@@ -21,7 +63,7 @@ export default function Chart({ data, onSetWatchlist }) {
             `https://api.twelvedata.com/profile?symbol=${data.symbol}&apikey=${API_KEY}`
           );
           const responseData = await response.json();
-          setProfile(responseData);
+          dispatch({ type: "profile/loaded", payload: responseData });
         }
 
         fetchData();
@@ -59,8 +101,7 @@ export default function Chart({ data, onSetWatchlist }) {
     async function fetchData() {
       const response = await fetch(`http://localhost:7000/funds`);
       const responseData = await response.json();
-      setAmount(responseData[0]);
-      setChartToggle((prevToggle) => !prevToggle);
+      dispatch({ type: "amount/loaded", payload: responseData[0] });
     }
 
     fetchData();
@@ -82,9 +123,7 @@ export default function Chart({ data, onSetWatchlist }) {
       });
 
       const responseData = await response.json();
-      setAmount(responseData);
-      setShares(0);
-      setChartToggle((prevToggle) => !prevToggle);
+      dispatch({ type: "amount/updated", payload: responseData });
     }
 
     async function updatePortfolio() {
@@ -115,7 +154,7 @@ export default function Chart({ data, onSetWatchlist }) {
         );
 
         const nextResponseData = await nextResponse.json();
-        console.log(nextResponseData);
+        console.log("transaction completed");
       } else {
         const convertedPrice =
           Math.round((Number(data.close) + Number.EPSILON) * 100) / 100;
@@ -126,8 +165,6 @@ export default function Chart({ data, onSetWatchlist }) {
           shares: Number(shares),
         };
 
-        console.log(newStock);
-
         const nextResponse = await fetch(`http://localhost:8000/stocks`, {
           method: "POST",
           body: JSON.stringify(newStock),
@@ -137,7 +174,7 @@ export default function Chart({ data, onSetWatchlist }) {
         });
 
         const nextResponseData = await nextResponse.json();
-        console.log(nextResponseData);
+        console.log("transaction completed");
       }
     }
 
@@ -152,7 +189,7 @@ export default function Chart({ data, onSetWatchlist }) {
       </NoDataFound>
     );
 
-  if (chartToggle) {
+  if (toggle) {
     return (
       <section className="chart transaction">
         <div className="totals">
@@ -172,7 +209,9 @@ export default function Chart({ data, onSetWatchlist }) {
               type="number"
               min="0"
               step="1"
-              onChange={(e) => setShares(e.target.value)}
+              onChange={(e) =>
+                dispatch({ type: "add_shares", payload: e.target.value })
+              }
             />
             <label>shares</label>
           </div>
