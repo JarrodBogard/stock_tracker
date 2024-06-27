@@ -1,0 +1,39 @@
+{
+  "stocks": [
+    {
+      "id": 1,
+      "name": "Apple Inc",
+      "ticker": "AAPL",
+      "price": 212.65,
+      "shares": 23
+    },
+    {
+      "id": 2,
+      "name": "Microsoft",
+      "ticker": "MSFT",
+      "price": 444.58,
+      "shares": 50
+    },
+    {
+      "id": 3,
+      "name": "Amazon",
+      "ticker": "AMZN",
+      "price": 184.97,
+      "shares": 100
+    },
+    {
+      "id": 4,
+      "name": "Walmart",
+      "ticker": "WMT",
+      "price": 67.62,
+      "shares": 200
+    },
+    {
+      "name": "Agilent Technologies, Inc.",
+      "ticker": "A",
+      "price": 132.62,
+      "shares": 1,
+      "id": 5
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+export const assets = [
+  {
+    id: 1,
+    name: "Apple",
+    ticker: "AAPL",
+    price: 210.4,
+    shares: 20,
+  },
+  {
+    id: 2,
+    name: "Microsoft",
+    ticker: "MSFT",
+    price: 444.58,
+    shares: 50,
+  },
+  {
+    id: 3,
+    name: "Amazon",
+    ticker: "AMZN",
+    price: 184.97,
+    shares: 100,
+  },
+  {
+    id: 4,
+    name: "Walmart",
+    ticker: "WMT",
+    price: 67.62,
+    shares: 200,
+  },
+];
+
+export const watchlist = [
+  {
+    id: 1,
+    name: "Tesla",
+    ticker: "TSLA",
+    price: 182.58,
+  },
+  {
+    id: 2,
+    name: "Google",
+    ticker: "GOOG",
+    price: 180.79,
+  },
+  {
+    id: 3,
+    name: "NVidia",
+    ticker: "NVDA",
+    price: 118.11,
+  },
+  {
+    id: 4,
+    name: "Advanced Micro Devices",
+    ticker: "AMD",
+    price: 160.25,
+  },
+  {
+    id: 5,
+    name: "Intel Corp",
+    ticker: "INTC",
+    price: 30.57,
+  },
+  {
+    id: 6,
+    name: "General Electric Co",
+    ticker: "GE",
+    price: 160.54,
+  },
+  {
+    id: 7,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 8,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 9,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 10,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 11,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 12,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 13,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 13,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 13,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 13,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 13,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 13,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+  {
+    id: 13,
+    name: "IBM",
+    ticker: "IBM",
+    price: 175.01,
+  },
+];

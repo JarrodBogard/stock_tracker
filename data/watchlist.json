@@ -1,0 +1,100 @@
+{
+  "watchlist": [
+    {
+      "id": 1,
+      "name": "Tesla",
+      "ticker": "TSLA",
+      "price": 182.58
+    },
+    {
+      "id": 2,
+      "name": "Google",
+      "ticker": "GOOG",
+      "price": 180.79
+    },
+    {
+      "id": 3,
+      "name": "NVidia",
+      "ticker": "NVDA",
+      "price": 118.11
+    },
+    {
+      "id": 4,
+      "name": "Advanced Micro Devices",
+      "ticker": "AMD",
+      "price": 160.25
+    },
+    {
+      "id": 5,
+      "name": "Intel Corp",
+      "ticker": "INTC",
+      "price": 30.57
+    },
+    {
+      "id": 6,
+      "name": "General Electric Co",
+      "ticker": "GE",
+      "price": 160.54
+    },
+    {
+      "id": 7,
+      "name": "IBM",
+      "ticker": "IBM",
+      "price": 175.01
+    },
+    {
+      "id": "Apple Inc",
+      "name": "Apple Inc",
+      "ticker": "AAPL",
+      "price": "210.33"
+    },
+    {
+      "id": "Tesla Inc",
+      "name": "Tesla Inc",
+      "ticker": "TSLA",
+      "price": "187.35"
+    },
+    {
+      "id": "Abbott Laboratories",
+      "name": "Abbott Laboratories",
+      "ticker": "ABT",
+      "price": "104.64"
+    },
+    {
+      "id": "American Airlines Group Inc",
+      "name": "American Airlines Group Inc",
+      "ticker": "AAL",
+      "price": "11.28"
+    },
+    {
+      "id": "Advance Auto Parts Inc",
+      "name": "Advance Auto Parts Inc",
+      "ticker": "AAP",
+      "price": "62.60"
+    },
+    {
+      "id": "Alcoa Corp",
+      "name": "Alcoa Corp",
+      "ticker": "AA",
+      "price": "39.05"
+    },
+    {
+      "id": "Agilent Technologies, Inc.",
+      "name": "Agilent Technologies, Inc.",
+      "ticker": "A",
+      "price": "133.86"
+    },
+    {
+      "id": "Alphabet Inc",
+      "name": "Alphabet Inc",
+      "ticker": "GOOG",
+      "price": "185.39"
+    },
+    {
+      "name": "Apple Inc",
+      "ticker": "AAPL",
+      "price": "214.38",
+      "id": 8
+    }
+  ]
+}
