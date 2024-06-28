@@ -1,22 +1,14 @@
 import { useState } from "react";
+import { useAccount } from "../context/AccountContext";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-
-export default function Navbar({ onSetData }) {
+export default function Navbar() {
+  const { fetchData } = useAccount();
   const [search, setSearch] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    async function fetchData() {
-      const response = await fetch(
-        `https://api.twelvedata.com/quote?symbol=${search}&apikey=${API_KEY}`
-      );
-      const data = await response.json();
-      onSetData(data);
-    }
-
-    fetchData();
+    fetchData(search);
     setSearch("");
   }
 

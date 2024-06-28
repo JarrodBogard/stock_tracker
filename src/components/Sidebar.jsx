@@ -1,21 +1,11 @@
-import { useEffect, useState } from "react";
+import { useAccount } from "../context/AccountContext";
 import { NavLink } from "react-router-dom";
 
 import logo from "../assets/logo.png";
 
 export default function Sidebar() {
-  const [data, setData] = useState(null);
-  const totalInvestment = data?.reduce((acc, curr) => acc + curr.price, 0);
-
-  useEffect(function () {
-    async function fetchData() {
-      const response = await fetch(`http://localhost:8000/stocks`);
-      const responseData = await response.json();
-      setData(responseData);
-    }
-
-    fetchData();
-  }, []);
+  const { portfolio } = useAccount();
+  const totalInvestment = portfolio?.reduce((acc, curr) => acc + curr.price, 0);
 
   return (
     <div className="sidebar" id="side">
@@ -26,7 +16,7 @@ export default function Sidebar() {
       <div className="summary-widget">
         <h2>Total Investment</h2>
         <span>
-          {!data ? "No data available" : "$" + totalInvestment.toFixed(2)}
+          {!portfolio ? "No data available" : "$" + totalInvestment.toFixed(2)}
         </span>
       </div>
       <nav>

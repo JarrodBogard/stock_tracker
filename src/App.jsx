@@ -5,6 +5,7 @@ import StockLayout from "./pages/StockLayout";
 import PageNotFound from "./pages/PageNotFound";
 import WatchlistAddPage from "./pages/WatchlistAddPage";
 import LoginPage from "./pages/LoginPage";
+import { AccountProvider } from "./context/AccountContext";
 
 export default function App() {
   const [authentication, setAuthentication] = useState(false);
@@ -12,17 +13,19 @@ export default function App() {
     setAuthentication(input);
   }
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="stocks" element={<StockLayout />} />
-        <Route path="watchlist-add" element={<WatchlistAddPage />} />
-        <Route
-          path="/login"
-          element={<LoginPage onAuthentication={handleAuthentication} />}
-        />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <AccountProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="stocks" element={<StockLayout />} />
+          <Route path="watchlist-add" element={<WatchlistAddPage />} />
+          <Route
+            path="/login"
+            element={<LoginPage onAuthentication={handleAuthentication} />}
+          />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </AccountProvider>
   );
 }

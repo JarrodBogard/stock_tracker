@@ -6,16 +6,13 @@ import Chart from "../components/Chart";
 import Watchlist from "../components/Watchlist";
 
 export default function StockLayout() {
-  const [data, setData] = useState(null);
-  const [watchlist, setWatchlist] = useState(null);
-
   return (
     <main className="layout">
       <Sidebar />
-      <Navbar onSetData={setData} />
+      <Navbar />
       <Portfolio />
-      <Chart data={data} onSetWatchlist={setWatchlist} />
-      <Watchlist watchlist={watchlist} onSetWatchlist={setWatchlist} />
+      <Chart />
+      <Watchlist />
     </main>
   );
 }

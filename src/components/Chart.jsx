@@ -1,185 +1,52 @@
-import { useEffect, useState, useReducer } from "react";
+import { useEffect } from "react";
+import { useAccount } from "../context/AccountContext";
 import NoDataFound from "./NoDataFound";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-
-const initialState = {
-  profile: null,
-  amount: null,
-  shares: 0,
-  toggle: false,
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "profile/loaded":
-      return {
-        ...state,
-        profile: action.payload,
-      };
-
-    case "amount/loaded":
-      return {
-        ...state,
-        amount: action.payload,
-        toggle: true,
-      };
-
-    case "amount/updated":
-      return {
-        ...state,
-        amount: action.payload,
-        shares: 0,
-        toggle: false,
-      };
-
-    case "add_shares":
-      return {
-        ...state,
-        shares: action.payload,
-      };
-  }
-}
-
-export default function Chart({ data, onSetWatchlist }) {
-  const [{ profile, amount, shares, toggle }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
-  // const [profile, setProfile] = useState(null);
-  // const [amount, setAmount] = useState(null);
-  // const [shares, setShares] = useState(0);
-  // const [chartToggle, setChartToggle] = useState(false);
+export default function Chart() {
+  const {
+    isLoading,
+    error,
+    data,
+    profile,
+    amount,
+    shares,
+    toggle,
+    addToWatchlist,
+    fetchFundsData,
+    updateFundsAmount,
+    updatePortfolio,
+    dispatch,
+  } = useAccount();
 
   function convertToNum(x) {
     return Number.parseFloat(x).toFixed(2);
   }
 
-  useEffect(
-    function () {
-      if (data?.symbol) {
-        async function fetchData() {
-          const response = await fetch(
-            `https://api.twelvedata.com/profile?symbol=${data.symbol}&apikey=${API_KEY}`
-          );
-          const responseData = await response.json();
-          dispatch({ type: "profile/loaded", payload: responseData });
-        }
-
-        fetchData();
-      }
-    },
-    [data]
-  );
-
   function handleClick() {
     const newWatchlistItem = {
-      // id: data.name,
       name: data.name,
       ticker: data.symbol,
       price: convertToNum(data.close),
     };
 
-    async function addToWatchlist() {
-      const response = await fetch(`http://localhost:9000/watchlist`, {
-        method: "POST",
-        body: JSON.stringify(newWatchlistItem),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = await response.json();
-
-      onSetWatchlist((prevWatchlist) => [...prevWatchlist, data]);
-    }
-
-    addToWatchlist();
+    addToWatchlist(newWatchlistItem);
   }
 
   function handleToggle() {
-    async function fetchData() {
-      const response = await fetch(`http://localhost:7000/funds`);
-      const responseData = await response.json();
-      dispatch({ type: "amount/loaded", payload: responseData[0] });
-    }
-
-    fetchData();
+    fetchFundsData();
   }
 
   function handleTransaction() {
-    const updatedAccount = {
-      ...amount,
-      amount: convertToNum(amount.amount - data.close * shares),
-    };
-
-    async function updateFundsAmount() {
-      const response = await fetch(`http://localhost:7000/funds/${amount.id}`, {
-        method: "PUT",
-        body: JSON.stringify(updatedAccount),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const responseData = await response.json();
-      dispatch({ type: "amount/updated", payload: responseData });
-    }
-
-    async function updatePortfolio() {
-      const response = await fetch(`http://localhost:8000/stocks`);
-      const responseData = await response.json();
-      const foundStock = responseData.find((stock) => stock.name === data.name);
-
-      if (foundStock) {
-        const num = (foundStock.price + Number(data.close)) / 2;
-        const newPrice = Math.round((num + Number.EPSILON) * 100) / 100;
-        // const newPrice = parseFloat(num.toFixed(2));
-
-        const updatedStock = {
-          ...foundStock,
-          price: newPrice,
-          shares: Number(foundStock.shares) + Number(shares),
-        };
-
-        const nextResponse = await fetch(
-          `http://localhost:8000/stocks/${foundStock.id}`,
-          {
-            method: "PATCH",
-            body: JSON.stringify(updatedStock),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        const nextResponseData = await nextResponse.json();
-        console.log("transaction completed");
-      } else {
-        const convertedPrice =
-          Math.round((Number(data.close) + Number.EPSILON) * 100) / 100;
-        const newStock = {
-          name: data.name,
-          ticker: data.symbol,
-          price: convertedPrice,
-          shares: Number(shares),
-        };
-
-        const nextResponse = await fetch(`http://localhost:8000/stocks`, {
-          method: "POST",
-          body: JSON.stringify(newStock),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        const nextResponseData = await nextResponse.json();
-        console.log("transaction completed");
-      }
-    }
-
     updatePortfolio();
-    updateFundsAmount();
+    updateFundsAmount(amount.id);
+  }
+
+  if (!data && error) {
+    return (
+      <NoDataFound className={"chart"} id={"chart"}>
+        {error}
+      </NoDataFound>
+    );
   }
 
   if (!data)

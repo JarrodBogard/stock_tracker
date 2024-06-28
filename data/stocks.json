@@ -4,8 +4,8 @@
       "id": 1,
       "name": "Apple Inc",
       "ticker": "AAPL",
-      "price": 213.29,
-      "shares": 27
+      "price": 213.45,
+      "shares": 24
     },
     {
       "id": 2,
@@ -31,8 +31,8 @@
     {
       "name": "Agilent Technologies, Inc.",
       "ticker": "A",
-      "price": 131.64,
-      "shares": 3,
+      "price": 129.76,
+      "shares": 1,
       "id": 5
     }
   ]

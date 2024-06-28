@@ -59,6 +59,10 @@ body {
   grid-template-rows: auto auto 1fr;
 }
 
+input {
+  color: var(--color-light--5);
+}
+
 input[type="text"]:focus {
   color: var(--color-light--5);
 }
@@ -193,11 +197,18 @@ input[type="text"]:focus {
   padding: 0;
   display: flex;
   justify-content: space-between;
-  /* background-color: var(--color-light--5); */
   background-color: var(--color-dark--2);
   border-radius: 7px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   padding: 2rem;
+}
+
+.portfolio-box {
+  background-color: var(--color-dark--2);
+  border-radius: 7px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 0 0 1rem 1rem;
 }
 
 .stock {
@@ -337,6 +348,7 @@ input[type="text"]:focus {
   justify-content: space-between;
   align-items: center;
   padding-right: 24px;
+  margin-bottom: 0.25rem;
   font-weight: bold;
 }
 
@@ -389,8 +401,9 @@ input[type="text"]:focus {
   border-radius: 7px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   border: none;
-  background-color: var(--color-light--2);
+  background-color: var(--color-dark--1);
   margin-bottom: 1rem;
+  padding: 1rem;
 }
 
 .watchlist input:focus {
@@ -399,7 +412,7 @@ input[type="text"]:focus {
 
 .no-data-found {
   display: flex;
-  width: 100%;
+  /* width: 100%; */
   justify-content: center;
   align-items: center;
 }

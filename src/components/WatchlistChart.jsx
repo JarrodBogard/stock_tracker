@@ -1,12 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { useAccount } from "../context/AccountContext";
 import NoDataFound from "./NoDataFound";
 
-export default function WatchlistChart({
-  stock,
-  onSetWatchlistToggle,
-  onSetWatchlist,
-}) {
-  const navigate = useNavigate();
+export default function WatchlistChart({ stock, onSetWatchlistToggle }) {
+  const { addToWatchlist } = useAccount();
   function convertToNum(x) {
     return Number.parseFloat(x).toFixed(2);
   }
@@ -19,22 +15,7 @@ export default function WatchlistChart({
       price: convertToNum(stock.close),
     };
 
-    console.log(newWatchlistItem);
-
-    async function addToWatchlist() {
-      const response = await fetch(`http://localhost:9000/watchlist`, {
-        method: "POST",
-        body: JSON.stringify(newWatchlistItem),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const responseData = await response.json();
-      onSetWatchlist((prevWatchlist) => [...prevWatchlist, responseData]);
-    }
-
-    addToWatchlist();
+    addToWatchlist(newWatchlistItem);
     onSetWatchlistToggle((prev) => !prev);
   }
 

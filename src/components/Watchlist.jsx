@@ -1,22 +1,13 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useAccount } from "../context/AccountContext";
 
 import WatchlistChart from "./WatchlistChart";
+import NoDataFound from "./NoDataFound";
 
-export default function Watchlist({ watchlist, onSetWatchlist }) {
+export default function Watchlist() {
+  const { data, watchlist, fetchData } = useAccount();
   const [watchlistToggle, setWatchlistToggle] = useState(false);
   const [search, setSearch] = useState("");
-  const [data, setData] = useState(null);
-
-  useEffect(function () {
-    async function fetchData() {
-      const response = await fetch(`http://localhost:9000/watchlist`);
-      const responseData = await response.json();
-      onSetWatchlist(responseData);
-    }
-
-    fetchData();
-  }, []);
 
   function handleWatchlistToggle() {
     setWatchlistToggle((prev) => !prev);
@@ -24,22 +15,17 @@ export default function Watchlist({ watchlist, onSetWatchlist }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("search");
-    async function fetchData() {
-      const response = await fetch(
-        `https://api.twelvedata.com/quote?symbol=${search}&apikey=9360604c3cde4d95bdb2d262c2c2a6cf`
-      );
-      const responseData = await response.json();
 
-      setData(responseData);
-    }
-
-    fetchData();
+    fetchData(search);
     setSearch("");
   }
 
-  if (!watchlist) {
-    return <p>Add stocks to your watchlist.</p>;
+  if (watchlist) {
+    return (
+      <NoDataFound className="watchlist" id="list">
+        Add stocks to your watchlist
+      </NoDataFound>
+    );
   }
 
   return (
@@ -52,7 +38,7 @@ export default function Watchlist({ watchlist, onSetWatchlist }) {
         {/* <Link to="/watchlist-add">+</Link> */}
       </span>
       {!watchlistToggle ? (
-        watchlist.map((stock) => (
+        watchlist?.map((stock) => (
           <li key={stock.id}>
             <div>
               <h2>{stock.ticker}</h2>
@@ -76,7 +62,6 @@ export default function Watchlist({ watchlist, onSetWatchlist }) {
           <WatchlistChart
             stock={data}
             onSetWatchlistToggle={setWatchlistToggle}
-            onSetWatchlist={onSetWatchlist}
           />
         </>
       )}
