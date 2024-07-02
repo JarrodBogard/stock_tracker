@@ -203,6 +203,10 @@ input[type="text"]:focus {
   padding: 2rem;
 }
 
+.portfolio ul span {
+  padding: 0 0 0.15rem 0;
+}
+
 .portfolio-box {
   background-color: var(--color-dark--2);
   border-radius: 7px;
@@ -348,13 +352,24 @@ input[type="text"]:focus {
   justify-content: space-between;
   align-items: center;
   padding-right: 24px;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
   font-weight: bold;
 }
 
-.watchlist .watchlist-heading-container span {
+.watchlist .watchlist-heading-container {
   font-size: var(--size-regular);
   cursor: pointer;
+}
+
+.watchlist-heading-container.no-watchlist {
+  position: absolute;
+  right: 15px;
+  top: 15.5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 1.95rem;
 }
 
 .watchlist h1 {
@@ -415,6 +430,7 @@ input[type="text"]:focus {
   /* width: 100%; */
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .homepage {
@@ -472,6 +488,10 @@ input[type="text"]:focus {
   outline: none;
 }
 
+.watchlist-chart {
+  position: relative;
+}
+
 .watchlist-chart .stats {
   display: flex;
   flex-direction: column;
@@ -483,8 +503,15 @@ input[type="text"]:focus {
   font-size: var(--size-small);
 }
 
+.watchlist-chart .watchlist-chart-button {
+  position: absolute;
+  right: 7.5px;
+  top: 7.5px;
+  cursor: pointer;
+}
+
 .transaction {
-  /* width: 100%; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -516,6 +543,14 @@ input[type="text"]:focus {
   margin: 0.25rem 0;
 }
 
+.transaction input {
+  width: 4rem;
+  height: 2rem;
+  background-color: var(--color-dark--0);
+  color: var(--color-light--5);
+  padding: 0.5rem;
+}
+
 .transaction input:focus {
   outline: none;
 }
@@ -524,6 +559,14 @@ input[type="text"]:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.transaction button {
+  background-color: var(--color-dark--0);
+  color: var(--color-light--5);
+  border: none;
+  padding: 1rem;
+  border-radius: 7px;
 }
 
 .login {
@@ -577,6 +620,35 @@ input[type="text"]:focus {
   font-weight: 700;
   background-color: var(--color-light--5);
   color: var(--color-dark--1);
+}
+
+.button-left,
+.button-right {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: none;
+  color: var(--color-light--5);
+  background-color: var(--color-dark--0);
+  font-weight: bold;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.button-left {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-40%, -50%);
+  /* transform: translateY(-50%); */
+}
+
+.button-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(40%, -50%);
+  /* transform: translateY(-50%); */
 }
 
 #nav {

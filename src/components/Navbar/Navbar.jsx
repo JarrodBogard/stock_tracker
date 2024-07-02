@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { useAccount } from "../context/AccountContext";
+import { useAccount } from "../../context/AccountContext";
+
+import Nav from "./Nav";
+import Form from "../Utils/Form";
+import Input from "../Utils/Input";
 
 export default function Navbar() {
   const { fetchData } = useAccount();
@@ -14,20 +18,15 @@ export default function Navbar() {
 
   return (
     <header className="navbar" id="nav">
-      <form onSubmit={handleSubmit}>
-        <input
+      <Form onSubmit={handleSubmit}>
+        <Input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search stock/fund name or ticker here..."
         />
-      </form>
-      <nav>
-        <span>Notifications</span>
-        <span>Alerts</span>
-        <span>|</span>
-        <span>username/photo</span>
-      </nav>
+      </Form>
+      <Nav />
     </header>
   );
 }

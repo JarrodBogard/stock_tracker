@@ -9,7 +9,6 @@ export default function WatchlistChart({ stock, onSetWatchlistToggle }) {
 
   function handleClick() {
     const newWatchlistItem = {
-      id: stock.name,
       name: stock.name,
       ticker: stock.symbol,
       price: convertToNum(stock.close),
@@ -20,17 +19,11 @@ export default function WatchlistChart({ stock, onSetWatchlistToggle }) {
   }
 
   if (!stock) {
-    return (
-      <NoDataFound>Search stock tickers to add to your watchlist.</NoDataFound>
-    );
+    return;
   }
 
   return (
-    <li
-      key={stock.name}
-      className="watchlist-chart"
-      style={{ position: "relative" }}
-    >
+    <li key={stock.name} className="watchlist-chart">
       <div>
         <h2>{stock.symbol}</h2>
         <h3>{stock.name}</h3>
@@ -41,15 +34,7 @@ export default function WatchlistChart({ stock, onSetWatchlistToggle }) {
           {convertToNum(stock.change)} ({convertToNum(stock.percent_change)}%)
         </span>
       </div>
-      <span
-        style={{
-          position: "absolute",
-          right: "7.5px",
-          top: "7.5px",
-          cursor: "pointer",
-        }}
-        onClick={handleClick}
-      >
+      <span className="watchlist-chart-button" onClick={handleClick}>
         +
       </span>
     </li>

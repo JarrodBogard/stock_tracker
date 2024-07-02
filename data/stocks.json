@@ -4,8 +4,8 @@
       "id": 1,
       "name": "Apple Inc",
       "ticker": "AAPL",
-      "price": 213.45,
-      "shares": 24
+      "price": 218.96,
+      "shares": 26
     },
     {
       "id": 2,
@@ -34,6 +34,13 @@
       "price": 129.76,
       "shares": 1,
       "id": 5
+    },
+    {
+      "name": "Listed Funds Trust - AAF First Priority CLO Bond ETF",
+      "ticker": "AAA",
+      "price": 25.04,
+      "shares": 1,
+      "id": 6
     }
   ]
 }

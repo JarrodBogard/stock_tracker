@@ -58,7 +58,7 @@ export default function Chart() {
 
   if (toggle) {
     return (
-      <section className="chart transaction">
+      <section className="chart transaction" id="chart">
         <div className="totals">
           <h2>Avalaible Funds</h2>
           <span>${amount.amount}</span>
@@ -87,7 +87,9 @@ export default function Chart() {
           <h2>Remaining Balance</h2>
           <span>${convertToNum(amount.amount - data.close * shares)}</span>
         </div>
-        <button onClick={handleTransaction}>Complete Transaction</button>
+        <div>
+          <button onClick={handleTransaction}>Complete Transaction</button>
+        </div>
       </section>
     );
   }

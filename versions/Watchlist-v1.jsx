@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { useAccount } from "../context/AccountContext";
 
-import WatchlistHeading from "./WatchlistHeading";
 import WatchlistChart from "./WatchlistChart";
 import NoDataFound from "./NoDataFound";
-
-import Form from "./Utils/Form";
-// import Input from "./Utils/Input";
 
 export default function Watchlist() {
   const { data, watchlist, fetchData } = useAccount();
@@ -24,14 +20,31 @@ export default function Watchlist() {
     setSearch("");
   }
 
-  if (!watchlist && !watchlistToggle) {
+  if (watchlist && !watchlistToggle) {
     return (
-      <NoDataFound className="watchlist" id="list">
-        <WatchlistHeading
-          className="watchlist-heading-container no-watchlist"
-          toggle={watchlistToggle}
-          onToggle={handleWatchlistToggle}
-        />
+      <NoDataFound
+        className="watchlist"
+        id="list"
+        style={{ position: "relative" }}
+      >
+        <span
+          className="watchlist-heading-container"
+          style={{
+            position: "absolute",
+            right: "15px",
+            top: "15.5px",
+            cursor: "pointer",
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            paddingLeft: "1.95rem",
+          }}
+        >
+          <span>My Watchlist</span>
+          <span onClick={handleWatchlistToggle}>
+            {!watchlistToggle ? "+" : "-"}
+          </span>
+        </span>
         Add stocks to your watchlist
       </NoDataFound>
     );
@@ -39,11 +52,13 @@ export default function Watchlist() {
 
   return (
     <ul className="watchlist" id="list">
-      <WatchlistHeading
-        className="watchlist-heading-container"
-        toggle={watchlistToggle}
-        onToggle={handleWatchlistToggle}
-      />
+      <span className="watchlist-heading-container">
+        <h1>My Watchlist</h1>
+        <span onClick={handleWatchlistToggle}>
+          {!watchlistToggle ? "+" : "-"}
+        </span>
+        {/* <Link to="/watchlist-add">+</Link> */}
+      </span>
       {!watchlistToggle ? (
         watchlist?.map((stock) => (
           <li key={stock.id}>
@@ -58,7 +73,7 @@ export default function Watchlist() {
         ))
       ) : (
         <>
-          <Form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               value={search}
@@ -66,7 +81,7 @@ export default function Watchlist() {
               placeholder="Search stock/fund name or ticker here..."
               style={{ width: "90%" }}
             />
-          </Form>
+          </form>
           <WatchlistChart
             stock={data}
             onSetWatchlistToggle={setWatchlistToggle}

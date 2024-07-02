@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Chart from "../components/Chart";
+import Chart from "../components/Chart/Chart";
 
 export default function WatchlistAddPage() {
   const [search, setSearch] = useState("");
