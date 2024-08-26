@@ -22,9 +22,9 @@ export default function Chart() {
       </NoDataFound>
     );
 
-  if (toggle) {
-    return <ChartTransaction />;
-  }
+  // if (toggle) {
+  //   return <ChartTransaction />;
+  // }
 
   return <ChartDisplay />;
 }

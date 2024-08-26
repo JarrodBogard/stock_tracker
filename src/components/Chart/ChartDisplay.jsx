@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import { useAccount } from "../../context/AccountContext";
 
 import ChartHeading from "./ChartHeading";
@@ -10,8 +11,7 @@ export default function ChartDisplay() {
   return (
     <section className="chart" id="chart">
       <ChartHeading />
-      <ChartPrices />
-      <ChartProfile />
+      <Outlet />
     </section>
   );
 }

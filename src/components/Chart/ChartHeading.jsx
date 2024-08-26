@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useAccount } from "../../context/AccountContext";
 
 export default function ChartHeading() {
   const { isLoading, error, data, addToWatchlist, fetchFundsData } =
     useAccount();
+
+  const navigate = useNavigate();
 
   function convertToNum(x) {
     return Number.parseFloat(x).toFixed(2);
@@ -20,6 +23,7 @@ export default function ChartHeading() {
 
   function handleToggle() {
     fetchFundsData();
+    navigate("transaction");
   }
 
   return (
