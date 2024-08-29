@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { useAccount } from "../../context/AccountContext";
 
 export default function ChartHeading() {
@@ -26,10 +27,12 @@ export default function ChartHeading() {
     <>
       <span className="chart-heading-container">
         <h1>{data.name}</h1>
-        <div>
-          <span onClick={handleClick}>Add to watchlist</span>|
-          <span onClick={handleToggle}>Add to portfolio</span>
-        </div>
+        <ul>
+          <li onClick={handleToggle}>
+            <NavLink to="/stocks/transaction">Buy/Sell</NavLink>
+          </li>
+          <li onClick={handleClick}>Watchlist+</li>
+        </ul>
       </span>
       <h2>
         {convertToNum(data.close)} {data.currency}

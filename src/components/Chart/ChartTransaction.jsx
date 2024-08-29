@@ -21,6 +21,8 @@ export default function ChartTransaction() {
     updateFundsAmount(amount.id);
   }
 
+  if (!amount) return <p>Loading...</p>;
+
   return (
     <section className="chart transaction" id="chart">
       <div className="totals">

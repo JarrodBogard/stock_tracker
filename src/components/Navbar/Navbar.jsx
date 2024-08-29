@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAccount } from "../../context/AccountContext";
 
 import Nav from "./Nav";
@@ -6,6 +7,7 @@ import Form from "../Utils/Form";
 import Input from "../Utils/Input";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { fetchData } = useAccount();
   const [search, setSearch] = useState("");
 
@@ -14,6 +16,7 @@ export default function Navbar() {
 
     fetchData(search);
     setSearch("");
+    navigate("/stocks/chart");
   }
 
   return (

@@ -3,6 +3,7 @@ import { useAccount } from "../../context/AccountContext";
 import ChartDisplay from "./ChartDisplay";
 import ChartTransaction from "./ChartTransaction";
 import NoDataFound from "../NoDataFound";
+import { Outlet } from "react-router-dom";
 
 export default function Chart() {
   const { isLoading, error, data, toggle } = useAccount();
@@ -22,9 +23,9 @@ export default function Chart() {
       </NoDataFound>
     );
 
-  if (toggle) {
-    return <ChartTransaction />;
-  }
+  // if (toggle) {
+  //   return <ChartTransaction />;
+  // }
 
-  return <ChartDisplay />;
+  return <Outlet />;
 }

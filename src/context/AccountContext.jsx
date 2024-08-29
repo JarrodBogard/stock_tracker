@@ -243,10 +243,13 @@ function AccountProvider({ children }) {
   }
 
   async function fetchFundsData() {
+    console.log("fired");
     dispatch({ type: "loading" });
     try {
       const response = await fetch(`http://localhost:7000/funds`);
       const responseData = await response.json();
+      console.log("fired");
+      console.log(responseData, responseData[0]);
       dispatch({ type: "amount/loaded", payload: responseData[0] });
     } catch (error) {
       dispatch({ type: "rejected", payload: error.message });
