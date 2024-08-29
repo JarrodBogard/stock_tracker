@@ -29,9 +29,17 @@ export default function ChartHeading() {
         <h1>{data.name}</h1>
         <ul>
           <li onClick={handleToggle}>
+            <NavLink to="/stocks/chart">Info</NavLink>
+          </li>
+          <li onClick={handleToggle}>
+            <NavLink to="something">Charts</NavLink>
+          </li>
+          <li onClick={handleToggle}>
             <NavLink to="/stocks/transaction">Buy/Sell</NavLink>
           </li>
-          <li onClick={handleClick}>Watchlist+</li>
+          <li id="watchlist-button" onClick={handleClick}>
+            Watchlist+
+          </li>
         </ul>
       </span>
       <h2>
