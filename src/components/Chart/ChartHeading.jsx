@@ -24,7 +24,7 @@ export default function ChartHeading() {
   }
 
   return (
-    <>
+    <section className="chart-header">
       <span className="chart-heading-container">
         <h1>{data.name}</h1>
         <ul>
@@ -49,6 +49,6 @@ export default function ChartHeading() {
         {(data.close - data.previous_close).toFixed(2)} (
         {Number(data.percent_change).toFixed(2)}%)
       </h3>
-    </>
+    </section>
   );
 }

@@ -8,7 +8,7 @@ export default function ChartDisplay() {
   const { isLoading, error } = useAccount();
 
   return (
-    <section className="chart" id="chart">
+    <section className="chart display" id="chart">
       <ChartHeading />
       <ChartPrices />
       <ChartProfile />

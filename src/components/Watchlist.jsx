@@ -9,7 +9,7 @@ import Form from "./Utils/Form";
 // import Input from "./Utils/Input";
 
 export default function Watchlist() {
-  const { data, watchlist, fetchData } = useAccount();
+  const { data, watchlist, deleteFromWatchlist, fetchData } = useAccount();
   const [watchlistToggle, setWatchlistToggle] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -22,6 +22,10 @@ export default function Watchlist() {
 
     fetchData(search);
     setSearch("");
+  }
+
+  function handleDelete(stockId) {
+    deleteFromWatchlist(stockId);
   }
 
   if (!watchlist && !watchlistToggle) {
@@ -53,6 +57,7 @@ export default function Watchlist() {
             </div>
             <div>
               <p>${stock.price}</p>
+              <span onClick={() => handleDelete(stock.id)}>-</span>
             </div>
           </li>
         ))

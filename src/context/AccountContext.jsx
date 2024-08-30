@@ -74,13 +74,21 @@ function reducer(state, action) {
         watchlist: action.payload,
       };
 
-    case "watchlist/updated":
+    case "watchlist/add":
       return {
         ...state,
         isLoading: false,
         error: "",
         watchlist: [action.payload, ...state.watchlist],
         // data: null,
+      };
+
+    case "watchlist/delete":
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        watchlist: state.watchlist.filter((item) => item.id !== action.payload),
       };
 
     case "profile/loaded":
@@ -236,19 +244,29 @@ function AccountProvider({ children }) {
 
       const responseData = await response.json();
 
-      dispatch({ type: "watchlist/updated", payload: responseData });
+      dispatch({ type: "watchlist/add", payload: responseData });
+    } catch (error) {
+      dispatch({ type: "rejected", payload: error.message });
+    }
+  }
+
+  async function deleteFromWatchlist(id) {
+    dispatch({ type: "loading" });
+    try {
+      const response = await fetch(`http://localhost:9000/watchlist/${id}`, {
+        method: "DELETE",
+      });
+      dispatch({ type: "watchlist/delete", payload: id });
     } catch (error) {
       dispatch({ type: "rejected", payload: error.message });
     }
   }
 
   async function fetchFundsData() {
-    console.log("fired");
     dispatch({ type: "loading" });
     try {
       const response = await fetch(`http://localhost:7000/funds`);
       const responseData = await response.json();
-      console.log("fired");
       console.log(responseData, responseData[0]);
       dispatch({ type: "amount/loaded", payload: responseData[0] });
     } catch (error) {
@@ -352,6 +370,7 @@ function AccountProvider({ children }) {
         toggle,
         fetchData,
         addToWatchlist,
+        deleteFromWatchlist,
         fetchFundsData,
         updateFundsAmount,
         updatePortfolio,

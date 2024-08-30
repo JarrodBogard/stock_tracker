@@ -37,16 +37,16 @@
       "price": 160.54
     },
     {
-      "id": 7,
-      "name": "IBM",
-      "ticker": "IBM",
-      "price": 175.01
-    },
-    {
       "name": "Agilent Technologies, Inc.",
       "ticker": "A",
       "price": "125.98",
       "id": 8
+    },
+    {
+      "name": "Apple Inc",
+      "ticker": "AAPL",
+      "price": "230.00",
+      "id": 10
     }
   ]
 }

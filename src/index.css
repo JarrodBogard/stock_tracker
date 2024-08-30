@@ -67,6 +67,11 @@ input[type="text"]:focus {
   color: var(--color-light--5);
 }
 
+input[id="email"],
+input[id="password"] {
+  color: var(--color-dark--2);
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -245,11 +250,19 @@ input[type="text"]:focus {
   border-radius: 7px;
   overflow-y: scroll;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .chart::-webkit-scrollbar {
   width: 0;
 }
+
+/* .chart-header {
+  display: flex;
+  flex-direction: column;
+} */
 
 .chart .chart-heading-container {
   display: flex;
@@ -272,6 +285,7 @@ input[type="text"]:focus {
   padding: 5px 10px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  cursor: pointer;
 }
 
 .chart .chart-heading-container #watchlist-button:hover {
@@ -332,6 +346,10 @@ input[type="text"]:focus {
   padding-right: 3rem;
 }
 
+.chart article {
+  height: 75%;
+}
+
 .chart article h3 {
   margin: 0;
   margin-bottom: 0.25rem;
@@ -350,6 +368,11 @@ input[type="text"]:focus {
 .chart .details span {
   padding-bottom: 0.5rem;
 }
+
+/* .display {
+  display: flex;
+  flex-direction: column;
+} */
 
 /* .chart .chart-no-data-found {
   text-align: center;
@@ -442,8 +465,18 @@ input[type="text"]:focus {
   letter-spacing: 0.5px;
 }
 
+.watchlist li div:last-child {
+  display: flex;
+}
+
+.watchlist li div:last-child span {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .watchlist li p {
   margin: 0;
+  padding-right: 8px;
 }
 
 .watchlist input {
@@ -558,7 +591,7 @@ input[type="text"]:focus {
 /* } */
 
 .transaction h2 {
-  padding-bottom: 0.25rem;
+  /* padding-bottom: 0.25rem; */
 }
 
 .transaction span {
@@ -603,6 +636,13 @@ input[type="text"]:focus {
   border: none;
   padding: 1rem;
   border-radius: 7px;
+}
+
+.transaction-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
 }
 
 .login {
