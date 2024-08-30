@@ -99,10 +99,17 @@ input[id="password"] {
 .navbar nav {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.navbar span {
+.navbar span:not(:nth-child(3)) {
   padding: 0.5rem;
+}
+
+.separator {
+  height: 25px;
+  margin: 0 18px 0 20px;
+  border-right: 2px solid var(--color-light--5);
 }
 
 .navbar input:focus {
@@ -437,6 +444,7 @@ input[id="password"] {
 
 .watchlist li {
   display: flex;
+  position: relative;
   justify-content: space-between;
   padding: 1.5rem;
   /* margin-bottom: 0.75rem;
@@ -465,14 +473,14 @@ input[id="password"] {
   letter-spacing: 0.5px;
 }
 
-.watchlist li div:last-child {
+/* .watchlist li div:last-child {
   display: flex;
 }
 
 .watchlist li div:last-child span {
   font-weight: bold;
   cursor: pointer;
-}
+} */
 
 .watchlist li p {
   margin: 0;
@@ -492,6 +500,13 @@ input[id="password"] {
 
 .watchlist input:focus {
   outline: none;
+}
+
+.watchlist-button {
+  position: absolute;
+  right: 7.5px;
+  top: 7.5px;
+  cursor: pointer;
 }
 
 .no-data-found {

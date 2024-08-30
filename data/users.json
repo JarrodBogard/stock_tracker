@@ -3,7 +3,9 @@
     {
       "id": 1,
       "email": "test@testmail.com",
-      "password": "testpassword"
+      "password": "testpassword",
+      "username": "Jarrod",
+      "image": "https://i.pravatar.cc/48?u=499476"
     }
   ]
 }

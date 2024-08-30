@@ -1,42 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useUsers } from "../context/UsersContext";
 
-export default function LoginPage({ onAuthentication }) {
+export default function LoginPage() {
   const [email, setEmail] = useState("test@testmail.com");
   const [password, setPassword] = useState("testpassword");
-  const navigate = useNavigate();
+  const { login } = useUsers();
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (email && password) {
-      login();
+      login(email, password);
     }
   }
-
-  function login() {
-    async function fetchData() {
-      const response = await fetch(`http://localhost:4000/users`);
-      const responseData = await response.json();
-
-      const user = responseData[0];
-      if (user.email === email && user.password === password) {
-        onAuthentication(true);
-        navigate("/stocks");
-      } else {
-        console.log("email or password are incorrect. try again");
-      }
-    }
-
-    fetchData();
-  }
-
-  function logout() {
-    onAuthentication(false);
-    navigate("/");
-  }
-
-  console.log(email, password);
 
   return (
     <main className="login">

@@ -385,7 +385,9 @@ function AccountProvider({ children }) {
 function useAccount() {
   const context = useContext(AccountContext);
   if (context === "undefined") {
-    throw new Error("");
+    throw new Error(
+      "AccountContext access is restricted to child components of the AccountContext Provider"
+    );
   }
   return context;
 }

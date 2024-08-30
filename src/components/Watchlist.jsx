@@ -57,7 +57,12 @@ export default function Watchlist() {
             </div>
             <div>
               <p>${stock.price}</p>
-              <span onClick={() => handleDelete(stock.id)}>-</span>
+              <span
+                className="watchlist-button"
+                onClick={() => handleDelete(stock.id)}
+              >
+                -
+              </span>
             </div>
           </li>
         ))
