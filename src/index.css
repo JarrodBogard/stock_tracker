@@ -234,7 +234,7 @@ input[id="password"] {
 
 .stock h2 {
   margin: 0;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   font-size: var(--size-regular);
   text-align: center;
 }
@@ -740,6 +740,52 @@ input[id="password"] {
   top: 50%;
   transform: translate(40%, -50%);
   /* transform: translateY(-50%); */
+}
+
+.wallet {
+  margin: 2.5rem;
+  padding: 2.5rem 5rem;
+  min-height: calc(100vh - 5rem);
+  background-color: var(--color-dark--1);
+  border-radius: 7px;
+}
+
+.wallet form {
+  background-color: var(--color-dark--2);
+  border-radius: 7px;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 24rem;
+  width: 34rem;
+  margin: 5rem auto;
+  color: var(--color-light--5);
+}
+
+.wallet form input {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  border-radius: 7px;
+  background-color: var(--color-light--5);
+  transition: all 0.2s;
+}
+
+.wallet form button {
+  color: inherit;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+  background-color: var(--color-light--5);
+  color: var(--color-dark--1);
 }
 
 #nav {

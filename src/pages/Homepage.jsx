@@ -1,9 +1,9 @@
-import Sidebar from "../components/Sidebar";
+import { NavLink } from "react-router-dom";
 
 export default function Homepage() {
   return (
     <div className="homepage">
-      <a href="/login">Start Investing Today</a>
+      <NavLink to="/login">Start Investing Today</NavLink>
     </div>
   );
 }

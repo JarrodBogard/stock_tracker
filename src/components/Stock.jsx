@@ -1,4 +1,5 @@
 export default function Stock({ stock }) {
+  const totalValue = stock.shares * stock.price;
   return (
     <li className="stock">
       <h2>
@@ -12,7 +13,7 @@ export default function Stock({ stock }) {
       </span>
       <span>
         Total Return
-        <b>{stock.price}</b>
+        <b>${totalValue.toFixed(2)}</b>
       </span>
     </li>
   );
