@@ -267,18 +267,26 @@ function AccountProvider({ children }) {
     try {
       const response = await fetch(`http://localhost:7000/funds`);
       const responseData = await response.json();
-      console.log(responseData, responseData[0]);
       dispatch({ type: "amount/loaded", payload: responseData[0] });
     } catch (error) {
       dispatch({ type: "rejected", payload: error.message });
     }
   }
 
-  async function updateFundsAmount(id) {
-    const updatedAccount = {
-      ...amount,
-      amount: convertToNum(amount.amount - data.close * shares),
-    };
+  async function updateFundsAmount(id, deposit) {
+    let updatedAccount;
+
+    if (deposit) {
+      updatedAccount = {
+        ...amount,
+        amount: convertToNum(Number(amount.amount) + Number(deposit)),
+      };
+    } else {
+      updatedAccount = {
+        ...amount,
+        amount: convertToNum(amount.amount - data.close * shares),
+      };
+    }
 
     dispatch({ type: "loading" });
 
